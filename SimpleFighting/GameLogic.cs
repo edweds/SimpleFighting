@@ -22,6 +22,7 @@ namespace SimpleFighting
             player1=FighterCreator(1);
             Console.Clear();
             player2 = FighterCreator(2);
+            StartFight();
         }
         private BaseFighter FighterCreator(int playerId)
         {
@@ -98,18 +99,26 @@ namespace SimpleFighting
                 player1.ShowStats();
                 Console.WriteLine();
                 player2.ShowStats();
+                round++;
+                Console.WriteLine("Раунд завершен, нажмите любую клавишу для продолжения");
+
+                Console.ReadKey();
             }
+            Console.WriteLine("Бой окончен");
+            Console.ReadKey();
 
         }
         private void DamageCalculator(BaseFighter one, BaseFighter another)
         {
             if (another.DodgeChance > rnd.Next(1, 101))
-                Console.WriteLine("{0} хотел ударить, но {1} увернулся от удара",one.Name,another.Name);
+                Console.WriteLine("{0} хотел ударить, но {1} увернулся от удара", one.Name, another.Name);
             else
-            {
                 another.HealthPoints -= one.Kick();
+            if (another.DodgeChance > rnd.Next(25, 101))
+                Console.WriteLine("{0} попытался провести суперудар, но {1} увернулся", one.Name, another.Name);
+            else
                 another.HealthPoints -= one.UltAbilittyUsing();
-            }
+            Console.WriteLine();
         }
     }
 }

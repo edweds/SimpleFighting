@@ -15,7 +15,9 @@ namespace SimpleFighting
 
         public override int UltAbilittyUsing()
         {
-            return rnd.Next(0, 61);
+            int ultDamage = rnd.Next(1, 61);
+            Console.WriteLine("{0} выпускает огненный шар и наносит противника урон {1} очков здоровья", this.Name, ultDamage);
+            return ultDamage;
         }
 
     }

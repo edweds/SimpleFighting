@@ -47,7 +47,17 @@ namespace SimpleFighting
                 HealthPoints = value * 100;
             }
         }
-        public int HealthPoints { get; set; }
+        private int healthPoints;
+        public int HealthPoints 
+        {
+            get  { return healthPoints; }
+            set
+            {
+                if (value <= 0)
+                    PlayerDead();
+                else healthPoints = value;
+            }
+        }
         protected BaseFighter (string name,string heroDescription, string ultAbilityDescription, int strength, int agility, int vitality)
         {
             rnd = new Random();
@@ -60,7 +70,10 @@ namespace SimpleFighting
         }
         public int Kick ()
         {
-            return rnd.Next(Damage-10, Damage + 1);            
+            int kickDamage= rnd.Next(Damage - 10, Damage + 1);
+            Console.WriteLine("{0} наносит удар и отнимает {1} очков здоровья",this.Name,kickDamage);
+            return kickDamage;
+            
         }
         public abstract int UltAbilittyUsing();
         public virtual void ShowStats()

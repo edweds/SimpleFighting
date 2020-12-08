@@ -14,7 +14,10 @@ namespace SimpleFighting
         }
         public override int UltAbilittyUsing()
         {
-            return Strength * 3;
+            // Calculate and show in Console Ultdamage
+                int ultDamage = Strength * 3;
+            Console.WriteLine("{0} наносит удар сокрушительным тройным ударом щита отнимает {1} очков здоровья\n", this.Name,ultDamage);
+            return ultDamage;
         }
     }
 }
