@@ -17,7 +17,7 @@ namespace SimpleFighting
         public int Strength
         {
             get { return strength; }
-            private set
+            set
             {
                 strength = value;
                 Damage = value * 10;
@@ -29,7 +29,7 @@ namespace SimpleFighting
         public int Agility 
         {
             get { return agility; }
-            private set
+            set
             {
                 agility = value;
                 DodgeChance = value * 6;
@@ -41,13 +41,13 @@ namespace SimpleFighting
         public int Vitality
         {
             get { return vitality; }
-            private set
+            set
             {
                 vitality = value;
                 HealthPoints = value * 100;
             }
         }
-        public int HealthPoints { get; private set; }
+        public int HealthPoints { get; set; }
         protected BaseFighter (string name,string heroDescription, string ultAbilityDescription, int strength, int agility, int vitality)
         {
             rnd = new Random();
@@ -65,7 +65,7 @@ namespace SimpleFighting
         public abstract int UltAbilittyUsing();
         public virtual void ShowStats()
         {
-            Console.WriteLine("Имя:{0}\n Сила:{1}\t\t Ловкость:{2}\t\t Живучесть:{3}\n Урон:{4} \t Шанс увернуться: {5}% \t HP:{6}\n Умение:{7}", 
+            Console.WriteLine("Имя:{0}\n Сила:{1}\t\t Ловкость:{2}\t\t Живучесть:{3}\n Урон:{4} \t Шанс увернуться: {5}% \t HP:{6}\n Умение:{7}\n", 
                 Name, Strength, Agility, Vitality, Damage, DodgeChance, HealthPoints, UltAbilityDescription);
         }
 

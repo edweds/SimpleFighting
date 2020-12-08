@@ -33,7 +33,9 @@ namespace SimpleFighting
                     Environment.Exit(0);
                     break;
                 default:
-                    Console.WriteLine("Неверный ввод");
+                    Console.WriteLine("Неверный ввод \nНажмите любую клавишу, чтобы повторить выбор");
+                    Console.ReadKey();
+                    PrintMainMenu();
                     return;                    
             }
             //Loop calling main menu printing
@@ -43,10 +45,11 @@ namespace SimpleFighting
         static void PrintGameRules ()
         {
             Console.Clear();
-            Console.WriteLine("Тут будут правила игры");
+            Console.WriteLine("Базовые храктеристики героев:");
             new Warrior().ShowStats();
             new Wizard().ShowStats();
             new Dexterous().ShowStats();
+            Console.WriteLine("Тут будут правила игры");
             Console.WriteLine("Для возврата в главное меню нажмите любую клавишу");
             Console.ReadKey();
         }
