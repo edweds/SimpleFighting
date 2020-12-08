@@ -46,9 +46,9 @@ namespace SimpleFighting
         {
             Console.Clear();
             Console.WriteLine("Базовые храктеристики героев:");
-            new Warrior().ShowStats();
-            new Wizard().ShowStats();
-            new Dexterous().ShowStats();
+            Console.WriteLine(new Warrior());
+            Console.WriteLine(new Wizard());
+            Console.WriteLine(new Dexterous());
             Console.WriteLine("Тут будут правила игры");
             Console.WriteLine("Для возврата в главное меню нажмите любую клавишу");
             Console.ReadKey();

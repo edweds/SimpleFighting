@@ -1,14 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace SimpleFighting
 {
     public abstract class BaseFighter
     {
         protected Random rnd; //variaty number generator
-        public delegate void IsDeadDelegate();
-        public event IsDeadDelegate PlayerDead;
+        public event Action PlayerDead;
         public string Name { get; private set; }
         public string HeroDescription { get; private set; }
         public string UltAbilityDescription { get; private set; }
@@ -20,7 +17,7 @@ namespace SimpleFighting
             set
             {
                 strength = value;
-                Damage = value * 10;
+                Damage = value * Constants.damageMultiplier;
             }
         }
         public int Damage { get; private set; }
@@ -32,7 +29,7 @@ namespace SimpleFighting
             set
             {
                 agility = value;
-                DodgeChance = value * 6;
+                DodgeChance = value * Constants.dodgeMultiplier;
             }
         }
         public int DodgeChance { get; private set; }
@@ -44,7 +41,7 @@ namespace SimpleFighting
             set
             {
                 vitality = value;
-                HealthPoints = value * 100;
+                HealthPoints = value * Constants.hpMultiplier;
             }
         }
         private int healthPoints;
@@ -54,6 +51,7 @@ namespace SimpleFighting
             set
             {
                 if (value <= 0)
+                    if(PlayerDead!=null)
                     PlayerDead();
                 else healthPoints = value;
             }
@@ -70,16 +68,15 @@ namespace SimpleFighting
         }
         public int Kick ()
         {
-            int kickDamage= rnd.Next(Damage - 10, Damage + 1);
+            int kickDamage= rnd.Next(Damage - Constants.damageVariety, Damage + 1);
             Console.WriteLine("{0} наносит удар и отнимает {1} очков здоровья",this.Name,kickDamage);
             return kickDamage;
             
         }
         public abstract int UltAbilittyUsing();
-        public virtual void ShowStats()
+        public override string ToString()
         {
-            Console.WriteLine("Имя:{0}\n Сила:{1}\t\t Ловкость:{2}\t\t Живучесть:{3}\n Урон:{4} \t Шанс увернуться: {5}% \t HP:{6}\n Умение:{7}\n", 
-                Name, Strength, Agility, Vitality, Damage, DodgeChance, HealthPoints, UltAbilityDescription);
+            return $"Имя:{Name}\n Сила:{Strength}\t\t Ловкость:{Agility}\t\t Живучесть:{Vitality}\n Урон:{Damage} \t Шанс увернуться: {DodgeChance}% \t HP:{HealthPoints}\n Умение:{UltAbilityDescription}";
         }
 
     }

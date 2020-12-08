@@ -31,12 +31,12 @@ namespace SimpleFighting
             string playerName = Console.ReadLine();
             Console.WriteLine("\nВыберите класс героя: \n 1.Воин \n 2.Проныра \n 3.Маг");
             fighter = HeroTypeChoicer(playerName);
-            for (int skillPoints = 5; skillPoints>0;skillPoints--)
+            for (int skillPoints = Constants.skillPoints; skillPoints>0;skillPoints--)
             {
                 Console.Clear();
-                fighter.ShowStats();
-                Console.WriteLine("\n Распределите очки умений среди характеристик персонажа\n +1 Силы - \t +10 к урону\n " +
-                    "+1 Ловкости -\t +6% шанс увернуться от атаки \n +1 Живучести - +100HP \n\n Осталось очков умений: {0} \n" +
+                Console.WriteLine(fighter);
+                Console.WriteLine("\n Распределите очки умений среди характеристик персонажа\n +1 Силы - \t +"+Constants.damageMultiplier+" к урону\n " +
+                    "+1 Ловкости -\t +"+Constants.dodgeMultiplier+"% шанс увернуться от атаки \n +1 Живучести - +"+Constants.hpMultiplier+"HP \n\n Осталось очков умений: {0} \n" +
                     " 1 - +1 к Силе\n 2 - +1 к Ловкости\n 3 - +1 к Живучести",skillPoints);
                 switch (Console.ReadLine())
                 {
@@ -96,9 +96,9 @@ namespace SimpleFighting
                 DamageCalculator(player1, player2);
                 DamageCalculator(player2, player1);
                 Console.WriteLine();
-                player1.ShowStats();
+                Console.WriteLine(player1);
                 Console.WriteLine();
-                player2.ShowStats();
+                Console.WriteLine(player2);
                 round++;
                 Console.WriteLine("Раунд завершен, нажмите любую клавишу для продолжения");
 
